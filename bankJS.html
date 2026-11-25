@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Bank Portal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            color: white;
+            background:
+                radial-gradient(circle at top left, #2563eb55, transparent 35%),
+                radial-gradient(circle at bottom right, #06b6d455, transparent 35%),
+                #071426;
+        }
+
+        .bank-container {
+            width: 100%;
+            max-width: 460px;
+            overflow: hidden;
+            border-radius: 24px;
+            background: #10233c;
+            border: 1px solid #ffffff20;
+            box-shadow: 0 25px 70px #0008;
+            animation: appear 0.7s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            padding: 28px;
+            background: linear-gradient(135deg, #2563eb, #0e7490);
+        }
+
+        .bank-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .bank-icon {
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: #ffffff25;
+            font-size: 25px;
+        }
+
+        .bank-brand h2 {
+            font-size: 21px;
+            letter-spacing: 0.4px;
+        }
+
+        .bank-brand p {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 3px;
+        }
+
+        .account-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding-top: 18px;
+            border-top: 1px solid #ffffff35;
+            font-size: 12px;
+        }
+
+        .account-meta span {
+            display: block;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .account-meta strong {
+            font-size: 14px;
+        }
+
+        .balance-box {
+            margin: 22px;
+            padding: 25px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #1d4ed8, #0e7490);
+            box-shadow: 0 12px 25px #0003;
+        }
+
+        .balance-label {
+            color: #dbeafe;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .balance-amount {
+            margin-top: 12px;
+            font-size: 38px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .balance-footer {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #dbeafe;
+        }
+
+        .controls {
+            padding: 0 25px 28px;
+        }
+
+        .section-title {
+            font-size: 17px;
+            margin-bottom: 15px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ffffff25;
+            border-radius: 12px;
+            background: #ffffff0c;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input::placeholder {
+            color: #94a3b8;
+        }
+
+        input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px #38bdf822;
+        }
+
+        .btn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        button {
+            border: none;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.1);
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        .btn-deposit {
+            color: white;
+            background: linear-gradient(135deg, #059669, #10b981);
+        }
+
+        .btn-withdraw {
+            color: white;
+            background: linear-gradient(135deg, #dc2626, #f87171);
+        }
+
+        .btn-check {
+            width: 100%;
+            color: #dbeafe;
+            background: #ffffff15;
+            border: 1px solid #ffffff20;
+        }
+
+        #message {
+            display: none;
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .msg-success {
+            display: block !important;
+            background: #064e3b;
+            color: #a7f3d0;
+            border: 1px solid #059669;
+        }
+
+        .msg-error {
+            display: block !important;
+            background: #7f1d1d;
+            color: #fecaca;
+            border: 1px solid #dc2626;
+        }
+
+        .msg-info {
+            display: block !important;
+            background: #0c4a6e;
+            color: #bae6fd;
+            border: 1px solid #0284c7;
+        }
+
+        .footer {
+            padding: 16px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 11px;
+            border-top: 1px solid #ffffff15;
+        }
+
+        @media (max-width: 420px) {
+            .balance-amount {
+                font-size: 30px;
+            }
+
+            .header {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bank-container">
+
+        <div class="header">
+            <div class="bank-brand">
+                <div class="bank-icon">🏦</div>
+                <div>
+                    <h2>Smart Bank</h2>
+                    <p>Your money, your control.</p>
+                </div>
+            </div>
+
+            <div class="account-meta">
+                <div>
+                    <span>ACCOUNT HOLDER</span>
+                    <strong id="accHolder"></strong>
+                </div>
+
+                <div>
+                    <span>ACCOUNT NUMBER</span>
+                    <strong id="accNum"></strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="balance-box">
+            <div class="balance-label">Available Balance</div>
+            <div class="balance-amount" id="accBalance">₹0.00</div>
+            <div class="balance-footer">💳 Account balance overview</div>
+        </div>
+
+        <div class="controls">
+
+            <h3 class="section-title">Manage Your Money</h3>
+
+            <div class="input-group">
+                <input type="number" id="amount" placeholder="Enter amount (₹)" min="0.01" step="0.01">
+            </div>
+
+            <div class="btn-grid">
+                <button class="btn-deposit" onclick="depositMoney()">
+                    ＋ Deposit
+                </button>
+
+                <button class="btn-withdraw" onclick="withdrawMoney()">
+                    − Withdraw
+                </button>
+            </div>
+
+            <button class="btn-check" onclick="showBalance()">
+                👁 Check Balance
+            </button>
+
+            <div id="message"></div>
+        </div>
+
+        <div class="footer">
+            🔒 Demo Banking Interface | Secure UI Experience
+        </div>
+
+    </div>
+
+    <script>
+        function BankAccount(accountNumber, accountHolder, balance) {
+            this.accountNumber = accountNumber;
+            this.accountHolder = accountHolder;
+            this.balance = balance;
+
+            this.deposit = function (amount) {
+                if (!Number.isFinite(amount) || amount <= 0) {
+                    return "Please enter a valid positive amount.";
+                }
+
+                this.balance += amount;
+                return this.balance;
+            };
+
+            this.withdraw = function (amount) {
+                if (!Number.isFinite(amount) || amount <= 0) {
+                    return "Please enter a valid positive amount.";
+                }
+
+                if (amount <= this.balance) {
+                    this.balance -= amount;
+                    return this.balance;
+                }
+
+                return "Withdrawal failed: Insufficient balance.";
+            };
+
+            this.checkBalance = function () {
+                return this.balance;
+            };
+        }
+
+        const account = new BankAccount("68", "Mohan Jaykar", 1000);
+
+        const currency = new Intl.NumberFormat("en-IN", {
+            style: "currency",
+            currency: "INR",
+            minimumFractionDigits: 2
+        });
+
+        document.getElementById("accNum").innerText =
+            account.accountNumber;
+
+        document.getElementById("accHolder").innerText =
+            account.accountHolder;
+
+        function updateBalance() {
+            document.getElementById("accBalance").innerText =
+                currency.format(account.checkBalance());
+        }
+
+        updateBalance();
+
+        function showMessage(text, type) {
+            const msgEl = document.getElementById("message");
+
+            msgEl.innerText = text;
+            msgEl.className = type;
+        }
+
+        function getAmount() {
+            return Number(document.getElementById("amount").value);
+        }
+
+        function depositMoney() {
+            const inputEl = document.getElementById("amount");
+            const amt = getAmount();
+
+            if (inputEl.value.trim() === "") {
+                showMessage("Please enter an amount first.", "msg-error");
+                return;
+            }
+
+            const result = account.deposit(amt);
+
+            if (typeof result === "number") {
+                updateBalance();
+
+                showMessage(
+                    "✓ Successfully deposited " + currency.format(amt),
+                    "msg-success"
+                );
+
+                inputEl.value = "";
+            } else {
+                showMessage(result, "msg-error");
+            }
+        }
+
+        function withdrawMoney() {
+            const inputEl = document.getElementById("amount");
+            const amt = getAmount();
+
+            if (inputEl.value.trim() === "") {
+                showMessage("Please enter an amount first.", "msg-error");
+                return;
+            }
+
+            const result = account.withdraw(amt);
+
+            if (typeof result === "number") {
+                updateBalance();
+
+                showMessage(
+                    "✓ Successfully withdrawn " + currency.format(amt),
+                    "msg-success"
+                );
+
+                inputEl.value = "";
+            } else {
+                showMessage(result, "msg-error");
+            }
+        }
+
+        function showBalance() {
+            showMessage(
+                "Your current balance is " +
+                currency.format(account.checkBalance()),
+                "msg-info"
+            );
+        }
+    </script>
+
+</body>
+
+</html>
