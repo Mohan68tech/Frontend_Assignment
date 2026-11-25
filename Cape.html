@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-one Coffee Cafe | Order Now</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 35px 15px;
+            background:
+                linear-gradient(rgba(35, 20, 12, 0.68),
+                    rgba(35, 20, 12, 0.78)),
+                url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1920&q=85");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 38px;
+            background: rgba(255, 250, 243, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+            animation: appear 0.8s ease;
+        }
+
+        .coffee-icon {
+            text-align: center;
+            font-size: 55px;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            text-align: center;
+            color: #a16b43;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            color: #56351f;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            text-align: center;
+            color: #84766a;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .divider {
+            width: 65px;
+            height: 3px;
+            background: #b77a4c;
+            margin: 15px auto 25px;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin: 19px 0 8px;
+            color: #573a29;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        input,
+        select {
+            width: 100%;
+            height: 49px;
+            padding: 0 14px;
+            border: 1px solid #e2d4c6;
+            border-radius: 10px;
+            background: #fff;
+            color: #49372a;
+            font-family: inherit;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #a76b40;
+            box-shadow: 0 0 0 3px rgba(167, 107, 64, 0.13);
+        }
+
+        input::placeholder {
+            color: #b2a69a;
+        }
+
+        button {
+            width: 100%;
+            height: 52px;
+            margin-top: 28px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #8b5735, #55321f);
+            color: white;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 7px 18px rgba(87, 51, 30, 0.2);
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #a36a43, #70452d);
+            box-shadow: 0 10px 22px rgba(87, 51, 30, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 23px;
+            color: #a18d7d;
+            font-size: 11px;
+        }
+
+        .footer span {
+            color: #9c633c;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media(max-width: 480px) {
+            .container {
+                padding: 28px 22px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            body {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <div class="coffee-icon">☕</div>
+
+        <p class="tagline">WELCOME TO</p>
+
+        <h1>A-one Coffee Cafe</h1>
+
+        <div class="divider"></div>
+
+        <p class="intro">
+            Good days start with good coffee.
+            Freshly brewed happiness, made just for you!
+        </p>
+
+        <form method="get">
+
+            <label for="customer-name">👤 Your Name</label>
+
+            <input id="customer-name" name="customerName" type="text" placeholder="Enter your full name"
+                autocomplete="name" required>
+
+            <label for="coffee">☕ Choose Your Coffee</label>
+
+            <select id="coffee" name="coffee" required>
+                <option value="">Select your favourite coffee</option>
+                <option value="Americano">Americano</option>
+                <option value="Espresso">Espresso</option>
+                <option value="Latte">Latte</option>
+                <option value="Iced Latte">Iced Latte</option>
+                <option value="Iced Americano">Iced Americano</option>
+                <option value="Iced Mocha">Iced Mocha</option>
+            </select>
+
+            <label for="quantity">📦 Quantity</label>
+
+            <input id="quantity" name="quantity" type="number" min="1" max="20" value="1" required>
+
+            <button type="submit">
+                Place Your Order &nbsp; →
+            </button>
+
+        </form>
+
+        <p class="footer">
+            Made with <span>♥</span> and freshly brewed coffee
+        </p>
+
+    </main>
+
+</body>
+
+</html>
